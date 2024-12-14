@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Listado de Proveedores</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    </head>
+    
+    <body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Listado de Proveedores</h1>
+        <!-- Enlace para agregar un nuevo Proveedor -->
+        <a href="/proveedores/nuevo" class="btn btn-primary mb-3">Agregar nuevo proveedor</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!-- Encabezado de la tabla -->
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Recorriendo la lista de trabajadores -->
+                <tr th:each="proveedor : ${proveedores}">
+                    <td th:text="${proveedor.id}"></td>
+                    <td th:text="${proveedor.nombre}"></td>
+                    <td th:text="${proveedor.direccion}"></td>
+                    <td th:text="${proveedor.telefono}"></td>
+                    <td th:text="${proveedor.correo}"></td>
+                    <td>
+                        <!-- Enlaces para editar y eliminar trabajador -->
+                        <a th:href="@{/proveedores/editar/{id}(id=${proveedor.id})}" 
+                           class="btn btn-sm btn-warning">Editar</a>
+                        <a th:href="@{/proveedores/eliminar/{id}(id=${proveedor.id})}" 
+                           class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
